@@ -1,25 +1,27 @@
-# Title of the Paper Here <a href="https://doi.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/1/11/DOI_logo.svg" alt="DOI" width="20"/></a> <a href="https://doi.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Zenodo-gradient-square.svg" alt="Zenodo" width="60"/></a>
+# Multistart Search for the Cyclic Cutwidth Minimization Problem <a href="https://doi.org/10.1016/j.cor.2020.105116"><img src="https://upload.wikimedia.org/wikipedia/commons/1/11/DOI_logo.svg" alt="DOI" width="20"/></a>
 
 <!-- Load Material Symbols Outlined for icons -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=mail" />
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Code](https://img.shields.io/badge/Code-Java-orange.svg)]()
-
+[![Code](https://img.shields.io/badge/Code-Java%208-orange.svg)]()
+[![DOI](https://img.shields.io/badge/DOI-10.1016%2Fj.cor.2020.105116-blue)](https://doi.org/10.1016/j.cor.2020.105116)
 
 ## Abstract
 
-Paper under review. To be added upon acceptance.
+The Cyclic Cutwidth Minimization Problem (CCMP) is a Graph Layout Problem that consists of finding an embedding of the vertices of a candidate graph in a host graph, in order to minimize the maximum cut of a host edge. In this case, the host graph is restricted to be a cycle. In this paper, we identify a new lower bound for the problem, and also a property which allows search procedures to drastically reduce the neighborhood size during the search. Additionally, we propose the use of an alternative objective function for min–max optimization problems, never used before in the context of the CCMP. These strategies have been combined within a multistart search procedure for this problem. The obtained method is compared with the state of the art for the CCMP using sets of problem instances previously published. Statistical tests indicate the merit of our proposal.
 
 ## Authors
 
-- First Author <sup>1,*</sup> <a href="mailto:first.author@urjc.es" aria-label="First Author Email"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Email_Shiny_Icon.svg" alt="email" width="20" style="vertical-align:middle;"/></a> <a href="https://orcid.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="ORCID" width="20" style="vertical-align:middle;"/></a>
-- Second Author <sup>2</sup> <a href="mailto:second.author@institution.edu" aria-label="Second Author Email"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Email_Shiny_Icon.svg" alt="email" width="20" style="vertical-align:middle;"/></a> <a href="https://orcid.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="ORCID" width="20" style="vertical-align:middle;"/></a>
+- Sergio Cavero <sup>1,*</sup> <a href="mailto:sergio.cavero@urjc.es" aria-label="Sergio Cavero Email"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Email_Shiny_Icon.svg" alt="email" width="20" style="vertical-align:middle;"/></a> <a href="https://orcid.org/0000-0002-5258-5915"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="ORCID" width="20" style="vertical-align:middle;"/></a>
+- Eduardo G. Pardo <sup>1</sup> <a href="mailto:eduardo.pardo@urjc.es" aria-label="Eduardo G. Pardo Email"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Email_Shiny_Icon.svg" alt="email" width="20" style="vertical-align:middle;"/></a> <a href="https://orcid.org/0000-0002-6247-5269"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="ORCID" width="20" style="vertical-align:middle;"/></a>
+- Manuel Laguna <sup>2</sup> <a href="mailto:laguna@colorado.edu" aria-label="Manuel Laguna Email"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Email_Shiny_Icon.svg" alt="email" width="20" style="vertical-align:middle;"/></a> <a href="https://orcid.org/0000-0002-8759-5523"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="ORCID" width="20" style="vertical-align:middle;"/></a>
+- Abraham Duarte <sup>1</sup> <a href="mailto:abraham.duarte@urjc.es" aria-label="Abraham Duarte Email"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Email_Shiny_Icon.svg" alt="email" width="20" style="vertical-align:middle;"/></a> <a href="https://orcid.org/0000-0002-4532-3124"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="ORCID" width="20" style="vertical-align:middle;"/></a>
 
 ### Affiliations
 
 1. Departamento de Informática y Estadística, Universidad Rey Juan Carlos — C. Tulipán, s/n, Móstoles, 28933, Madrid, Spain
-2. Department Name, Institution Name — Address, City, Postal Code, Country
+2. Leeds School of Business, University of Colorado Boulder — Boulder, CO, USA
 
 <sup>*</sup>Corresponding author.
 
@@ -33,13 +35,10 @@ Paper under review. To be added upon acceptance.
 - [Datasets](#datasets)
 - [Code Execution](#code-execution)
 - [Requirements](#requirements)
-- [Results](#results)
-- [License](#license)
 - [Funding](#funding)
 - [Citation](#citation)
 - [Acknowledgments](#acknowledgments)
 - [Contact](#contact)
-- [Powered by MORK](#powered-by-mork-metaheuristic-optimization-framework)
 
 ---
 
@@ -48,128 +47,145 @@ Paper under review. To be added upon acceptance.
 ```
 .
 ├── instances/          # Problem instances
-├── results/           # Experimental results
-├── src/               # Source code
-├── target/            # Compiled artifacts
-├── analysis/          # Analysis scripts
+│   ├── small/         # Small random graphs (16-24 vertices)
+│   ├── harwell-boeing/ # Harwell-Boeing graphs (39-685 vertices)
+│   └── ... # all instances set
+├── code # Executable JAR file
 ├── LICENSE            # License file
-├── README.md          # This file
-└── pom.xml            # Maven configuration
+└── README.md          # This file
 ```
 
 ---
 
-
-
 ## Datasets
 
-Instances are categorized in different datasets inside the `instances` folder.
+The instances are organized in ten different categories inside the `instances` folder, following the benchmark sets from the literature. The complete test set consists of 179 instances grouped into structured graphs with known properties and random graphs.
 
 ### Instance Format
 
-Each instance is encoded as a plain text file representing a graph:
-- The first line contains the number of vertices `n` and edges `m`.
-- Each subsequent line contains a pair of integers `u v` representing an edge between vertex `u` and vertex `v`.
-- Vertices are indexed from 0 to n-1.
+Each instance is encoded as a plain text file representing an undirected graph:
+- The first line contains: `Nombre del problema: <instance_name>`
+- The second line contains three integers: `n n m` where:
+  - `n` = number of vertices
+  - `m` = number of edges
+- Each subsequent line contains two integers `u v` representing an edge between vertex `u` and vertex `v`.
+- Vertices are indexed from 1 to n.
 
-Example:
+**Example (ibm32.mtx.rnd):**
 ```
-10 15
-0 1
-0 2
-1 3
+Nombre del problema: ibm32.mtx.rnd
+32 32 90
+18 26
+18 16
+18 22
 ...
 ```
 
-### Dataset Statistics
+### Dataset Categories
 
-| Dataset | Instances | Vertices Range | Edges Range | Description |
-|---------|-----------|----------------|-------------|-------------|
-| Small   | 10        | 10-50          | 15-100      | Small test instances |
-| Medium  | 20        | 50-200         | 100-500     | Medium-sized instances |
-| Large   | 15        | 200-1000       | 500-5000    | Large benchmark instances |
+#### 1. Small Instances (`Smallinstances/`)
+- **Instances**: 84 random graphs
+- **Vertices**: 16-24
+- **Edges**: 18-49
+- **Description**: Small random graphs used for preliminary testing and validation
+
+#### 2. Harwell-Boeing (`HarwellBoeing/`)
+- **Instances**: 38 graphs
+- **Vertices**: 39-685
+- **Edges**: 46-3720
+- **Description**: Real-world graphs from the Harwell-Boeing Sparse Matrix Collection, arising from scientific and engineering problems
+
+#### 3. Complete Split Graphs (`CompleteSplit/`)
+- **Instances**: 21 graphs
+- **Description**: Structured graphs with a complete subgraph and an independent set
+- **Part of**: Regular graphs with known structure
+
+#### 4. Toroidal Mesh (`ToroidalMesh/`)
+- **Instances**: 17 graphs
+- **Description**: Grid-like structures with wraparound connections forming a torus topology
+- **Part of**: Regular graphs with known structure
+
+#### 5. Join of Hypercubes (`JoinHypercubes/`)
+- **Instances**: 9 graphs
+- **Description**: Graphs formed by joining hypercube structures
+- **Part of**: Regular graphs with known structure
+
+#### 6. Cone Graphs (`Cones/`)
+- **Instances**: 10 graphs
+- **Description**: Graphs formed by connecting all vertices of a base graph to an apex vertex
+- **Part of**: Regular graphs with known structure
+
+#### 7. Meshes (`Meshes/`)
+- **Instances**: 66 graphs
+- **Description**: Two-dimensional grid structures (not included in main experiments as optima are known)
+
+#### 8. Grids (`Grids/`)
+- **Instances**: 36 graphs
+- **Description**: Rectangular grid graphs (not included in main experiments as optima are known)
+
+#### 9. Cylindrical Mesh (`CylindricalMesh/`)
+- **Instances**: 27 graphs
+- **Description**: Grid structures with one dimension forming a cycle (not included in main experiments as optima are known)
+
+#### 10. Hypercubes (`Hypercubes/`)
+- **Instances**: 9 graphs
+- **Description**: n-dimensional hypercube graphs Q₃ through Q₆ (not included in main experiments as optima are known)
+
+#### 11. Complete Bipartite (`CompleteBipartite/`)
+- **Instances**: 31 graphs
+- **Description**: Complete bipartite graphs K_{m,n} (not included in main experiments as optima are known)
+
+### Experimental Dataset Summary
+
+The main experiments reported in the paper use the following instances:
+
+| Dataset Category | Instances | Vertices Range | Edges Range | Type |
+|------------------|-----------|----------------|-------------|------|
+| Small | 84 | 16-24 | 18-49 | Random |
+| Harwell-Boeing | 38 | 39-685 | 46-3720 | Random/Real-world |
+| Complete Split | 21 | 12-500 | varies | Structured |
+| Toroidal Mesh | 17 | 16-1000 | varies | Structured |
+| Join of Hypercubes | 9 | 16-512 | varies | Structured |
+| Cones | 10 | 12-100 | varies | Structured |
+| **Total** | **179** | **12-1000** | **18-6225** | **Mixed** |
 
 ## Code Execution
 
-### Building the Project
+### Running the Algorithm
 
+The algorithm is distributed as a single executable JAR file compiled with Java 8.
+
+**Basic execution:**
 ```bash
-mvn clean package
+java -jar ccmp-multistart.jar <instance_file>
 ```
 
-### Running Experiments
-
-Execution of the program can be done via the command line.
-
-**Example 1:** Execute default experiment with the default set of instances
+**Example:**
 ```bash
-java -jar target/code.jar 
+java -jar ccmp-multistart.jar instances/harwell-boeing/ibm32.mtx.rnd
 ```
-
-**Example 2:** Execute using a different set of instances located inside the `newinstances` folder
-```bash
-java -jar target/code.jar --instances.path.default=newinstances
-```
-
-**Example 3:** Execute with custom parameters
-```bash
-java -jar target/code.jar --instances.path.default=newinstances --algorithm.maxIterations=1000 --seed=42
-```
-
-### Configuration Options
-
-Available command-line parameters:
-- `--instances.path.default`: Path to instances folder (default: `instances`)
-- `--algorithm.maxIterations`: Maximum number of iterations (default: `1000`)
-- `--algorithm.populationSize`: Population size for metaheuristics (default: `100`)
-- `--seed`: Random seed for reproducibility (default: `0`)
-- `--output.path`: Output directory for results (default: `results`)
 
 ## Requirements
 
-- Java 11 or higher
-- Maven 3.6+ (for building from source)
-- Minimum 4GB RAM recommended for large instances
+- **Java Runtime Environment (JRE) 8 or higher**
+- Minimum 2GB RAM (4GB recommended for large instances)
+- No additional dependencies required (all included in JAR)
 
-### Dependencies
+### Compilation from Source (if needed)
 
-All dependencies are managed through Maven and will be automatically downloaded during the build process. Main dependencies include:
-- MORK Framework (latest version)
-- Apache Commons Math3
-- JUnit 5 (for testing)
-
-## Results
-
-Experimental results are stored in the `results` folder after execution. Each result file includes:
-- Instance name
-- Best solution found
-- Solution quality metrics
-- Execution time
-- Algorithm parameters used
-
-Results can be analyzed using the provided visualization scripts in the `analysis` folder.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-### MIT License Summary
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
-
-**Alternative licenses:** If you require a different license for commercial or academic use, please contact the corresponding author.
+If you have access to the source code:
+```bash
+javac -source 8 -target 8 -d bin src/**/*.java
+jar cvfe ccmp-multistart.jar MainClass -C bin .
+```
 
 ## Funding
 
 This research was supported by:
 
-- **Grant Name/Number**: [Funding Agency Name] - Project Title (Grant #XXXXX)
-- **Grant Name/Number**: [Second Funding Source] - Project Title (Grant #YYYYY)
-- **Universidad Rey Juan Carlos** - Internal Research Funding Program
+- **Ministerio de Ciencia, Innovación y Universidades** - Grant Ref. PGC2018-095322-B-C22
+- **Ministerio de Ciencia, Innovación y Universidades** - Grant Ref. FPU19/04098
+- **Comunidad de Madrid and European Regional Development Fund** - Grant Ref. P2018/TCS-4566
 
 The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.
 
@@ -179,51 +195,48 @@ If you use this work in your research, please cite our paper:
 
 ### DOI
 
-<https://doi.org/XXXXXXX>
+<https://doi.org/10.1016/j.cor.2020.105116>
 
 ### Bibtex
 
 ```bibtex
-@article{citeKey2024,
-  title={Title of the Paper Here},
-  author={Surname, First Name and Surname2, Second Name},
-  journal={Journal Name},
-  volume={XX},
-  number={X},
-  pages={XXX--XXX},
-  year={20XX},
-  publisher={Publisher Name},
-  doi={XXXXXXX}
+@article{Cavero2021,
+  title={Multistart search for the Cyclic Cutwidth Minimization Problem},
+  author={Cavero, Sergio and Pardo, Eduardo G. and Laguna, Manuel and Duarte, Abraham},
+  journal={Computers \& Operations Research},
+  volume={126},
+  pages={105116},
+  year={2021},
+  publisher={Elsevier},
+  doi={10.1016/j.cor.2020.105116}
 }
 ```
 
 ### APA Format
 
-Surname, F. N., & Surname2, S. N. (20XX). Title of the paper here. *Journal Name*, *XX*(X), XXX-XXX. https://doi.org/XXXXXXX
+Cavero, S., Pardo, E. G., Laguna, M., & Duarte, A. (2021). Multistart search for the Cyclic Cutwidth Minimization Problem. *Computers & Operations Research*, *126*, 105116. https://doi.org/10.1016/j.cor.2020.105116
 
 ### IEEE Format
 
-F. N. Surname and S. N. Surname2, "Title of the paper here," *Journal Name*, vol. XX, no. X, pp. XXX-XXX, 20XX, doi: XXXXXXX.
+S. Cavero, E. G. Pardo, M. Laguna, and A. Duarte, "Multistart search for the Cyclic Cutwidth Minimization Problem," *Computers & Operations Research*, vol. 126, p. 105116, 2021, doi: 10.1016/j.cor.2020.105116.
 
 ## Acknowledgments
 
 We would like to thank:
-- The reviewers for their valuable feedback and suggestions
-- [Name/Organization] for providing computational resources
-- The MORK development team for their excellent framework
-- Contributors who helped improve this work
+- P. Jain, K. Srivastava, and G. Saran for kindly providing the source code of their Memetic Algorithm for comparative testing
+- The reviewers for their valuable feedback and suggestions that improved the quality of this work
+- The creators of the Harwell-Boeing Sparse Matrix Collection for providing real-world benchmark instances
 
 ## Contact
 
 For questions, issues, or collaborations, please contact:
 
-- **First Author**: [first.author@urjc.es](mailto:first.author@urjc.es)
-- **Project Issues**: [GitHub Issues](https://github.com/username/repository/issues)
-- **Project Website**: [https://project-website.com](https://project-website.com)
-
-## Powered by MORK (Metaheuristic Optimization framewoRK)
-
-| ![Mork logo](https://user-images.githubusercontent.com/55482385/233611563-4f5c91f2-af36-4437-a4b5-572b6655487a.svg) | MORK is a Java framework for easily solving hard optimization problems. You can [create a project](https://generator.mork-optimization.com/) and try the framework in under one minute. See the [documentation](https://docs.mork-optimization.com/en/latest/) or the [source code](https://github.com/mork-optimization/mork). |
-|:--:|--|
+- **Sergio Cavero** (Corresponding Author): [sergio.cavero@urjc.es](mailto:sergio.cavero@urjc.es)
+- **Eduardo G. Pardo**: [eduardo.pardo@urjc.es](mailto:eduardo.pardo@urjc.es)
+- **Research Group Website**: Universidad Rey Juan Carlos, Departamento de Informática y Estadística
 
 ---
+
+**Keywords:** Cyclic cutwidth, Graph layout problem, Circular embedding, Tabu Search, Multistart search, Metaheuristics, Combinatorial optimization
+
+**Published in:** Computers & Operations Research, Volume 126, February 2021
