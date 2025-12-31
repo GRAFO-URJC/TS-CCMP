@@ -149,27 +149,189 @@ The main experiments reported in the paper use the following instances:
 | Cones | 10 | 12-100 | varies | Structured |
 | **Total** | **179** | **12-1000** | **18-6225** | **Mixed** |
 
+
 ## Code Execution
 
-### Running the Algorithm
+The algorithm implementation consists of four executable JAR files: one for the main multistart tabu search algorithm and three for reproducing the preliminary experiments described in Section 4.2 of the paper.
 
-The algorithm is distributed as a single executable JAR file compiled with Java 8.
+### Directory Structure
 
-**Basic execution:**
+```
+code/
+├── MultistartTS.jar                    # Main algorithm
+├── GreedyConstructiveIterations.jar    # Experiment: Table 1
+├── GreedyVSRandomConstructive.jar      # Experiment: Table 2
+├── LocalSearchStrategies.jar           # Experiment: Table 3
+├── readme.txt                          # Execution instructions
+└── resources/                          # Sample instances
+```
+
+---
+
+### Main Algorithm Execution
+
+**Command:**
 ```bash
-java -jar ccmp-multistart.jar <instance_file>
+java -jar MultistartTS.jar <folder>
 ```
 
 **Example:**
 ```bash
-java -jar ccmp-multistart.jar instances/harwell-boeing/ibm32.mtx.rnd
+java -jar MultistartTS.jar resources/smallinstances/
 ```
+
+**Output:** 
+- `M-TS-CCMP.xlsx` - Excel file containing:
+  - Best cyclic cutwidth value found
+  - Computational time
+  - Number of iterations performed
+  - Solution quality metrics
+
+**Description:** Executes the complete Multistart Tabu Search algorithm with the tuned parameters (TabuTenure = 0.2n, Non-Improving = 0.1n, r_min = 10, r_max = 30) on all instances in the specified folder.
+
+---
+
+### Preliminary Experiments
+
+The following JAR files reproduce the experiments presented in Section 4.2 of the paper.
+
+#### 1. Greedy Constructive Iterations (Table 1)
+
+**Command:**
+```bash
+java -jar GreedyConstructiveIterations.jar <folder>
+```
+
+**Example:**
+```bash
+java -jar GreedyConstructiveIterations.jar resources/smallinstances/
+```
+
+**Output Files:**
+- `GreedyConstructiveAfter1iterations.xlsx`
+- `GreedyConstructiveAfter5iterations.xlsx`
+- `GreedyConstructiveAfter10iterations.xlsx`
+- `GreedyConstructiveAfter20iterations.xlsx`
+- `GreedyConstructiveAfter30iterations.xlsx`
+- `GreedyConstructiveAfter40iterations.xlsx`
+- `GreedyConstructiveAfter50iterations.xlsx`
+
+**Description:** Tests the performance of the greedy constructive procedure (Algorithm 1) with different numbers of iterations to determine optimal restart parameters. Results correspond to Table 1 in the paper.
+
+---
+
+#### 2. Greedy vs Random Constructive (Table 2)
+
+**Command:**
+```bash
+java -jar GreedyVSRandomConstructive.jar <folder>
+```
+
+**Example:**
+```bash
+java -jar GreedyVSRandomConstructive.jar resources/smallinstances/
+```
+
+**Output Files:**
+- `ConstructiveGreedy1Second.xlsx` - Results using greedy construction
+- `ConstructiveRandom1Second.xlsx` - Results using random construction
+
+**Description:** Compares the greedy constructive procedure against a totally random approach with a 1-second time limit. Results correspond to Table 2 in the paper.
+
+---
+
+#### 3. Local Search Strategies (Table 3)
+
+**Command:**
+```bash
+java -jar LocalSearchStrategies.jar <folder>
+```
+
+**Example:**
+```bash
+java -jar LocalSearchStrategies.jar resources/smallinstances/
+```
+
+**Output Files:**
+- `LS.xlsx` - Local Search baseline results
+- `LS+E.xlsx` - Local Search with Efficient move calculation
+- `LS+E+ROI.xlsx` - Local Search with Efficient calculation and Regions Of Interest
+
+**Description:** Evaluates the contribution of the advanced strategies introduced in Section 3:
+- **LS**: Basic local search (Section 2.2)
+- **LS+E**: Adds efficient move calculation (Section 3.2)
+- **LS+E+ROI**: Adds region of interest neighborhood reduction (Section 3.3)
+
+Results correspond to Table 3 in the paper.
+
+---
+
+### Algorithm Configuration
+
+The multistart tabu search algorithm uses the following default parameters (determined in Section 4.2):
+
+| Parameter | Value | Description |
+|-----------|-------|-------------|
+| **Tabu Tenure** | 0.2 × n | Size of tabu list (where n = number of vertices) |
+| **Non-improving iterations** | 0.1 × n | Stopping criterion (min: 6, max: 15) |
+| **Minimum restarts** (r_min) | 10 | Minimum number of multistart iterations |
+| **Maximum restarts** (r_max) | 30 | Maximum number of multistart iterations |
+| **Time limit** (t_max) | Instance-dependent | Maximum execution time |
+
+These parameters were determined through the preliminary experiments described in Section 4.2 of the paper.
+
+---
+
+### Output Format
+
+All output files are generated in Excel format (`.xlsx`) and include:
+
+- **Instance name**: Name of the graph instance
+- **Best solution**: Best cyclic cutwidth value found
+- **Average**: Average objective function value across runs
+- **Deviation (%)**: Percentage deviation from best-known solution
+- **CPU Time (s)**: Computational time in seconds
+- **#Best**: Number of times the best solution was found
+- **Additional metrics**: Depending on the experiment (e.g., Avg. #Cons., Avg. #Sol.)
+
+---
+
+### Batch Execution Example
+
+To run the complete experimental evaluation:
+
+```bash
+# Main algorithm on all instance categories
+java -jar MultistartTS.jar resources/HarwellBoeing/
+java -jar MultistartTS.jar resources/smallinstances/
+java -jar MultistartTS.jar resources/CompleteSplit/
+java -jar MultistartTS.jar resources/ToroidalMesh/
+java -jar MultistartTS.jar resources/JoinHypercubes/
+java -jar MultistartTS.jar resources/Cones/
+
+# Run preliminary experiments
+java -jar GreedyConstructiveIterations.jar resources/smallinstances/
+java -jar GreedyVSRandomConstructive.jar resources/smallinstances/
+java -jar LocalSearchStrategies.jar resources/smallinstances/
+```
+
+---
 
 ## Requirements
 
 - **Java Runtime Environment (JRE) 8 or higher**
 - Minimum 2GB RAM (4GB recommended for large instances)
-- No additional dependencies required (all included in JAR)
+- No additional dependencies required (all libraries included in JAR files)
+- Excel-compatible software to view output files (Microsoft Excel, LibreOffice Calc, etc.)
+
+### System Specifications Used in Paper
+
+All experiments reported in the paper were conducted on:
+- **Processor**: Intel Core i7-4702MQ CPU @ 2.20 GHz
+- **Memory**: 16 GB RAM
+- **Operating System**: Not specified (Java cross-platform)
+- **Java Version**: Java 8
+
 
 ## Funding
 
