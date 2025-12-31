@@ -171,14 +171,6 @@ java -jar ccmp-multistart.jar instances/harwell-boeing/ibm32.mtx.rnd
 - Minimum 2GB RAM (4GB recommended for large instances)
 - No additional dependencies required (all included in JAR)
 
-### Compilation from Source (if needed)
-
-If you have access to the source code:
-```bash
-javac -source 8 -target 8 -d bin src/**/*.java
-jar cvfe ccmp-multistart.jar MainClass -C bin .
-```
-
 ## Funding
 
 This research was supported by:
