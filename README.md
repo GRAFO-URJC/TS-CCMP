@@ -6,6 +6,9 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Code](https://img.shields.io/badge/Code-Java%208-orange.svg)]()
 [![DOI](https://img.shields.io/badge/DOI-10.1016%2Fj.cor.2020.105116-blue)](https://doi.org/10.1016/j.cor.2020.105116)
+[![Zenodo](https://zenodo.org/badge/1125763466.svg)](https://doi.org/10.5281/zenodo.18114802)
+
+
 
 ## Abstract
 
